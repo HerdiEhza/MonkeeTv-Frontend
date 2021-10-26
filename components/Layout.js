@@ -1,14 +1,12 @@
-import CategoryButtons from "./CategoryButtons"
-import RunningText from "./RunningText"
-import Navbar from "./Navbar"
+import RunningText from "../components/RunningText"
 
-const Layout = ({ children, categories }) => {
+const Layout = ({ children, categories, runningtexts }) => {
   return (
     <div className="flex justify-center bg-gray-200">
-      <div className="max-w-screen ml-2 mr-2 flex flex-col min-h-screen w-full">
+      <div className="max-w-screen flex flex-col min-h-screen w-full">
         {/* <CategoryButtons categories={categories}/> */}
-        <div className="flex-grow"  key={categories.id}>{children} </div>
-        <RunningText />
+        <div className="flex-grow ml-2 mr-2" >{children} </div>
+      <RunningText runningtexts={runningtexts} />
       </div>
       <div
         hidden
@@ -17,6 +15,12 @@ const Layout = ({ children, categories }) => {
       />
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const runningtexts  = await getRunningtexts();
+  
+  return { props: { runningtexts } }
 }
 
 export default Layout

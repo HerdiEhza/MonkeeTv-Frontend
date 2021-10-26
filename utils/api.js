@@ -22,6 +22,16 @@ export async function getCategory(slug) {
   return categories?.[0];
 }
 
+export async function getRunningtexts() {
+  const runningtexts = await fetchAPI("/runningtexts");
+  return runningtexts;
+}
+
+export async function getRunningtext(slug) {
+  const runningtexts = await fetchAPI(`/runningtexts?slug=${slug}`);
+  return runningtexts?.[0];
+}
+
 export async function getProducts() {
   const products = await fetchAPI("/products");
   return products;
